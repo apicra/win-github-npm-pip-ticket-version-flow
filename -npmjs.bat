@@ -1,3 +1,2 @@
-set GIT_USER=%~1  
-set PROJECT=%~2  
-.apicra\-project-create.bat %GIT_USER% %PROJECT% 
+@echo off
+.apicra\-project.bat npmjs %~1 %~2 %~3

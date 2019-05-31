@@ -56,3 +56,10 @@ korzystającego z API
 
 
 
+### .apicra
+Create
+    git clone https://github.com/apicra/npm-github-win.git .apicra
+
+Delete
+    RMDIR /Q/S .apicra
+
