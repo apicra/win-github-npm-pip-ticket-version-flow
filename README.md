@@ -63,3 +63,12 @@ Create
 Delete
     RMDIR /Q/S .apicra
 
+### apicra.json
+
+
+here all all modules, installed after .apicra ist downloaded over script
+
+
+-apicra.bat init
+
+
