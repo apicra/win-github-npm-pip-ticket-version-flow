@@ -72,3 +72,19 @@ here all all modules, installed after .apicra ist downloaded over script
 -apicra.bat init
 
 
+## Test
+install
+
+    -apicra.bat install project-github-npmjs
+
+publish version on github
+
+    -github.bat publish
+
+publish version on nmpjs
+
+    -npmjs.bat publish
+
+publish project on nmpjs & github
+
+    -project.bat publish

@@ -46,7 +46,7 @@ IF EXIST ".apicra" (
 GOTO end
 ::::::::::::::
 :reinstall
-echo "Do you really wan't delete the whole apicra modules and projects?
+echo "Do you really want delete the whole apicra modules and projects?
 RMDIR /Q/S .apicra && echo %NAME% folder is deleted
 del /f apicra.txt && echo %NAME% config file is deleted
 GOTO install
@@ -57,6 +57,8 @@ IF EXIST %APICRA_PATH% (
     IF EXIST %APICRA_CONFIG% GOTO install_module_from_config
     GOTO help
 )
+::mkdir .apicra
+echo .apicra/ >> .gitignore
 git clone https://github.com/apicra/npm-github-win.git .apicra && echo %NAME% is installed
 IF EXIST %APICRA_CONFIG% (
     ECHO Install All modules from config file %APICRA_CONFIG%
@@ -66,7 +68,7 @@ IF EXIST %APICRA_CONFIG% (
 )
 ::::::::::::::
 :install_module
-.apicra\-module.bat install_file %MODULE%
+.apicra\-module.bat install %MODULE%
 GOTO end
 ::::::::::::::
 :install_module_from_config

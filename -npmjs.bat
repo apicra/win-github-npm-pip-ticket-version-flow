@@ -1,2 +1,3 @@
 @echo off
-.apicra\-project.bat npmjs %~1 %~2 %~3
+.apicra\-module.bat npmjs publish
+.apicra\-module.bat npmjs %~1 %~2 %~3
