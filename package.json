@@ -1,6 +1,6 @@
 {
   "name": "apicra-win-github-npm-pip-ticket-version-flow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "For using this project we need to include project Apicra GITHUB NPM",
   "main": "index.js",
   "scripts": {
