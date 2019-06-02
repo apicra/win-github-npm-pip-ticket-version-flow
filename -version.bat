@@ -1,3 +1,1 @@
-set GIT_USER=%~1
-set PROJECT=%~2
-
+npm version patch && node -pe "require('./package.json').version" > .apicra/variable/VERSION.txt

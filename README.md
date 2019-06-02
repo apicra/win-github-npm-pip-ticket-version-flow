@@ -88,3 +88,8 @@ publish version on nmpjs
 publish project on nmpjs & github
 
     -project.bat publish
+
+
+## github
+
+    -github.bat push

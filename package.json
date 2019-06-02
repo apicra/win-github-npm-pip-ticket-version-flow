@@ -1,0 +1,19 @@
+{
+  "name": "apicra-win-github-npm-pip-ticket-version-flow",
+  "version": "1.0.0",
+  "description": "For using this project we need to include project Apicra GITHUB NPM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apicra/win-github-npm-pip-ticket-version-flow.git"
+  },
+  "author": "Tom Sapletta <t@sapletta.com> (https://tom.sapletta.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apicra/win-github-npm-pip-ticket-version-flow/issues"
+  },
+  "homepage": "https://github.com/apicra/win-github-npm-pip-ticket-version-flow#readme"
+}
