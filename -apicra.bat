@@ -46,12 +46,15 @@ IF EXIST ".apicra" (
 GOTO end
 ::::::::::::::
 :reinstall
-echo "Do you really want delete the whole apicra modules and projects?
-RMDIR /Q/S .apicra && echo %NAME% folder is deleted
-del /f apicra.txt && echo %NAME% config file is deleted
+echo :: "Do you really want delete the whole apicra modules and projects?
+RMDIR /Q/S .apicra && echo :: %NAME% folder is deleted
+del /f apicra.txt && echo :: %NAME% config file is deleted
 GOTO install
 ::::::::::::::
 :install
+echo ::
+echo :: Apicra :: Install
+echo ::
 IF NOT "%MODULE%"=="" GOTO install_module
 IF EXIST %APICRA_PATH% (
     IF EXIST %APICRA_CONFIG% GOTO install_module_from_config
@@ -59,9 +62,9 @@ IF EXIST %APICRA_PATH% (
 )
 ::mkdir .apicra
 echo .apicra/ >> .gitignore
-git clone https://github.com/apicra/npm-github-win.git .apicra && echo %NAME% is installed
+git clone https://github.com/apicra/npm-github-win.git .apicra && echo :: %NAME% is installed
 IF EXIST %APICRA_CONFIG% (
-    ECHO Install All modules from config file %APICRA_CONFIG%
+    echo :: Install All modules from config file %APICRA_CONFIG%
     GOTO install_module_from_config
 ) ELSE (
     GOTO config
@@ -72,22 +75,28 @@ IF EXIST %APICRA_CONFIG% (
 GOTO end
 ::::::::::::::
 :install_module_from_config
+echo ::
+echo :: Apicra :: Install modules from config file
+echo ::
 for /f "delims==" %%a in (%APICRA_CONFIG%) do .apicra\-module.bat install %%a
 GOTO end
 ::::::::::::::
 :config
 IF EXIST %APICRA_CONFIG% GOTO end
-echo github > %APICRA_CONFIG% && echo apicra.txt config file is created
+echo github > %APICRA_CONFIG% && echo :: apicra.txt config file is created
 GOTO end
 ::::::::::::::
 :update
-git -C .apicra pull origin master && echo %NAME% is updated
+git -C .apicra pull origin master && echo :: %NAME% is updated
 GOTO end
 ::::::::::::::
 :delete
+echo ::
+echo :: Apicra :: Delete
+echo ::
 IF NOT "%MODULE%"=="" GOTO delete_module
 IF NOT EXIST %APICRA_PATH% (
-    ECHO Apicra not exist
+    echo :: Apicra not exist
     GOTO help
 )
 echo "Do you really wan't delete the whole apicra modules and projects?
