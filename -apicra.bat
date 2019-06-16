@@ -59,7 +59,7 @@ GOTO install
 echo ::
 echo :: Apicra :: Install
 echo ::
-IF NOT "%MODULE%"=="" GOTO install_module
+IF NOT "%MODULE%"=="" GOTO install_module_shortcut
 IF EXIST %APICRA_PATH% (
     IF EXIST %APICRA_CONFIG% GOTO install_module_from_config
     GOTO help
@@ -74,42 +74,55 @@ IF EXIST %APICRA_CONFIG% (
     GOTO config
 )
 ::
-:install_shortcut
 :: script to use in root tree of project as module shortcut, e.g: -github.bat, -ticket.bat, -version.bat
 :: Install for defined module or for all
 :: if no params then all modules shortcuts
 :: if param then current
+:install_module_shortcut
+echo ::
+IF EXIST -%MODULE%.bat (
+echo :: %NAME% :: %MODULE% :: Module shortcut is Existing ::
+) ELSE (
+echo :: %NAME% :: %MODULE% :: Module shortcut is created ::
 echo @echo off > -%MODULE%.bat
-echo .apicra\-project.bat github %1 %2 %3 >> -%MODULE%.bat
-GOTO end
+echo .apicra\-project.bat %MODULE% %1 %2 %3 >> -%MODULE%.bat
+)
+echo ::
+GOTO install_module
 ::
-:delete_shortcut
+:delete_module_shortcut
+echo ::
+echo :: %NAME% :: %MODULE% :: module shortcut is deleted ::
+echo ::
 del -%MODULE%.bat
-:: Install for defined module or for all
-GOTO end
+GOTO delete_module
 ::
 :update_shortcut
 :: Install for defined module or for all
 GOTO end
 ::
 :install_module
-.apicra\-module.bat install %MODULE%
+IF EXIST .apicra\module\%MODULE% (
+echo :: %NAME% :: %MODULE% :: Module is Existing
 GOTO end
+)
+.apicra\-module.bat install %MODULE%
+GOTO install_shortcut
 ::
 :install_module_from_config
 echo ::
-echo :: Apicra :: Install modules from config file
+echo :: %NAME% :: %MODULE% :: Install modules from config file
 echo ::
 for /f "delims==" %%a in (%APICRA_CONFIG%) do .apicra\-module.bat install %%a
 GOTO install_shortcut
 ::
 :config
 IF EXIST %APICRA_CONFIG% GOTO end
-echo github > %APICRA_CONFIG% && echo :: apicra.txt config file is created
+echo github > %APICRA_CONFIG% && echo :: %NAME% :: %MODULE% :: apicra.txt config file is created
 GOTO end
 ::
 :update
-git -C .apicra pull origin master && echo :: %NAME% is updated
+git -C .apicra pull origin master && echo %NAME% :: %MODULE% :: %NAME% is updated
 GOTO end
 ::
 :download_power
@@ -122,16 +135,16 @@ GOTO end
 ::
 :delete
 echo ::
-echo :: Apicra :: Delete
+echo :: %NAME% :: %MODULE% :: Delete
 echo ::
-IF NOT "%MODULE%"=="" GOTO delete_module
+IF NOT "%MODULE%"=="" GOTO delete_module_shortcut
 IF NOT EXIST %APICRA_PATH% (
-    echo :: Apicra not exist
+    echo :: %NAME% :: %APICRA_PATH% :: Path not exist
     GOTO help
 )
 echo "Do you really wan't delete the whole apicra modules and projects?
 pause
-RMDIR /Q/S .apicra && echo %NAME% folder is deleted
+RMDIR /Q/S .apicra && echo %NAME% :: %MODULE% :: folder is deleted ::
 ::del /f apicra.txt && echo %NAME% config file is deleted
 GOTO end
 ::
