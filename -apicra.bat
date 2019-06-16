@@ -74,6 +74,24 @@ IF EXIST %APICRA_CONFIG% (
     GOTO config
 )
 ::
+:install_shortcut
+:: script to use in root tree of project as module shortcut, e.g: -github.bat, -ticket.bat, -version.bat
+:: Install for defined module or for all
+:: if no params then all modules shortcuts
+:: if param then current
+echo @echo off > -%MODULE%.bat
+echo .apicra\-project.bat github %1 %2 %3 >> -%MODULE%.bat
+GOTO end
+::
+:delete_shortcut
+del -%MODULE%.bat
+:: Install for defined module or for all
+GOTO end
+::
+:update_shortcut
+:: Install for defined module or for all
+GOTO end
+::
 :install_module
 .apicra\-module.bat install %MODULE%
 GOTO end
@@ -83,7 +101,7 @@ echo ::
 echo :: Apicra :: Install modules from config file
 echo ::
 for /f "delims==" %%a in (%APICRA_CONFIG%) do .apicra\-module.bat install %%a
-GOTO end
+GOTO install_shortcut
 ::
 :config
 IF EXIST %APICRA_CONFIG% GOTO end
