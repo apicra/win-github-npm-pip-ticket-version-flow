@@ -41,7 +41,7 @@ przy tworzeniu dokumentacji API konieczne jest typowanie.
 Mój wybór padł na bibliotekę FastApi bazująca na języku python
 W chwili obecnej tworzę wsparcie dla środowiska python dla narzędzia .apicra
 
-efekt powinien być taki, by w krótkim czasie przygotować:
+## Efekt powinien być taki, by w krótkim czasie przygotować:
 
 ### API
 routing w python
@@ -54,9 +54,13 @@ UI przy uzyciu frameworka Vue
 korzystającego z API
 
 
+## Instalacja w bieżącym projekcie
 
+    git clone https://github.com/apicra/win-github-npm-pip-ticket-version-flow.git apicra
+    
+eventually move from apicra to the main folder
 
-### .apicra
+### lub manualne dodanie .apicra
 Create
     git clone https://github.com/apicra/npm-github-win.git .apicra
 
